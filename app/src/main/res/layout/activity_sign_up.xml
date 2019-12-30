@@ -17,17 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioButton
-        android:id="@+id/rbMale"
-        android:layout_width="117dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="24dp"
-        android:text="Male"
-        app:layout_constraintStart_toEndOf="@+id/rbFemale"
-        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
-
     <EditText
         android:id="@+id/password"
         android:layout_width="356dp"
@@ -53,16 +42,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/birthday" />
 
-    <RadioButton
-        android:id="@+id/rbCustom"
-        android:layout_width="97dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        android:text="Custom"
-        app:layout_constraintStart_toEndOf="@+id/rbMale"
-        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
 
     <RadioButton
         android:id="@+id/rbFemale"
@@ -74,6 +53,29 @@
         android:text="Female"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+    <RadioButton
+        android:id="@+id/rbMale"
+        android:layout_width="117dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="24dp"
+        android:text="Male"
+        app:layout_constraintStart_toEndOf="@+id/rbFemale"
+        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+    <RadioButton
+        android:id="@+id/rbCustom"
+        android:layout_width="97dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="24dp"
+        android:text="Custom"
+        app:layout_constraintStart_toEndOf="@+id/rbMale"
+        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
 
     <EditText
         android:id="@+id/first_name"
