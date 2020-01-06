@@ -25,5 +25,8 @@ public class SignUpActivity extends AppCompatActivity {
         rbtnMale = findViewById(R.id.rbMale);
         rbtnFemale = findViewById(R.id.rbFemale);
         rbtnCustom = findViewById(R.id.rbCustom);
+
+
+
     }
 }

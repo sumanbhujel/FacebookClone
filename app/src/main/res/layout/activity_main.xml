@@ -30,6 +30,19 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="TextFields" />
 
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="301dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email_phone" />
+
     <Button
         android:id="@+id/buttonCreate"
         android:layout_width="334dp"
@@ -64,17 +77,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonLogin" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="301dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_phone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

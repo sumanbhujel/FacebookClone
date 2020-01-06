@@ -33,49 +33,15 @@
 
     <TextView
         android:id="@+id/tvGender"
-        android:layout_width="135dp"
-        android:layout_height="33dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="36dp"
-        android:text="Gender"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birthday" />
-
-
-    <RadioButton
-        android:id="@+id/rbFemale"
-        android:layout_width="109dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:text="Female"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
-
-    <RadioButton
-        android:id="@+id/rbMale"
-        android:layout_width="117dp"
-        android:layout_height="31dp"
+        android:layout_width="86dp"
+        android:layout_height="38dp"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="24dp"
-        android:text="Male"
-        app:layout_constraintStart_toEndOf="@+id/rbFemale"
-        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
-
-    <RadioButton
-        android:id="@+id/rbCustom"
-        android:layout_width="97dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="24dp"
-        android:text="Custom"
-        app:layout_constraintStart_toEndOf="@+id/rbMale"
-        app:layout_constraintTop_toBottomOf="@+id/tvGender" />
-
+        android:layout_marginTop="28dp"
+        android:text="Gender"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthday" />
 
     <EditText
         android:id="@+id/first_name"
@@ -120,11 +86,12 @@
         android:id="@+id/buttonSignUp"
         android:layout_width="351dp"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="32dp"
         android:text="Sign Up"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rbMale" />
+        app:layout_constraintTop_toBottomOf="@id/rgGender" />
 
     <EditText
         android:id="@+id/email_phone"
@@ -150,5 +117,35 @@
         android:text="It's quick and easy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvfirst" />
+
+    <RadioGroup
+        android:id="@+id/rgGender"
+        android:layout_width="270dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="28dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toEndOf="@+id/tvGender"
+        app:layout_constraintTop_toBottomOf="@+id/birthday">
+
+        <RadioButton
+            android:id="@+id/rbFemale"
+            android:layout_width="89dp"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+
+        <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/rbCustom"
+            android:layout_width="105dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Custom" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
