@@ -1,6 +1,6 @@
 package com.example.facebookclone.model;
 
-public class UserApi {
+public class User {
     private String first_name;
     private String last_name;
     private String email_phone;
@@ -9,7 +9,7 @@ public class UserApi {
     private String gender;
     private String token;
 
-    public UserApi(String first_name, String last_name, String email_phone, String password, String birthday, String gender) {
+    public User(String first_name, String last_name, String email_phone, String password, String birthday, String gender) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email_phone = email_phone;
@@ -18,7 +18,7 @@ public class UserApi {
         this.gender = gender;
     }
 
-    public UserApi(String email_phone, String password) {
+    public User(String email_phone, String password) {
         this.email_phone = email_phone;
         this.password = password;
     }

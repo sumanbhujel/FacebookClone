@@ -6,24 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.facebookclone.api.FacebookInterface;
-import com.example.facebookclone.model.UserApi;
+import com.example.facebookclone.api.UsersAPI;
+import com.example.facebookclone.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpActivity extends AppCompatActivity {
 
     EditText etFirstName, etLastName, etPassword, etBirthday, etEmailPhone;
     RadioGroup radioGroup;
-    FacebookInterface facebookInterface;
+    UsersAPI usersAPI;
     Retrofit retrofit;
     Button btnSignup;
     String gender;
@@ -40,7 +38,6 @@ public class SignUpActivity extends AppCompatActivity {
         etBirthday = findViewById(R.id.birthday);
         btnSignup = findViewById(R.id.buttonSignUp);
         radioGroup= findViewById(R.id.rgGender);
-        getInstance();
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -66,8 +63,8 @@ public class SignUpActivity extends AppCompatActivity {
                 String password = etPassword.getText().toString();
                 String birthday = etBirthday.getText().toString();
 
-                UserApi userApi = new UserApi(first_name,last_name,email_phone,password,birthday,gender);
-                addUser(userApi);
+                User user = new User(first_name,last_name,email_phone,password,birthday,gender);
+                addUser(user);
 
             }
         });
@@ -75,14 +72,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-    private void getInstance() {
-        retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:7000/")
-                .addConverterFactory(GsonConverterFactory.create()).build();
-        facebookInterface = retrofit.create(FacebookInterface.class);
-    }
 
-    private void addUser(UserApi user){
-        Call<Void> userAdd = facebookInterface.addUser(user);
+    private void addUser(User user){
+        Call<Void> userAdd = usersAPI.addUser(user);
 
         userAdd.enqueue(new Callback<Void>() {
             @Override
@@ -97,9 +89,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
     }
 }
