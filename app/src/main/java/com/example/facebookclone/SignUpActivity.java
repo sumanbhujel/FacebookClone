@@ -3,13 +3,30 @@ package com.example.facebookclone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import com.example.facebookclone.api.FacebookInterface;
+import com.example.facebookclone.model.UserApi;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignUpActivity extends AppCompatActivity {
 
     EditText etFirstName, etLastName, etPassword, etBirthday, etEmailPhone;
-    RadioButton rbtnMale, rbtnFemale, rbtnCustom;
+    RadioGroup radioGroup;
+    FacebookInterface facebookInterface;
+    Retrofit retrofit;
+    Button btnSignup;
+    String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +38,66 @@ public class SignUpActivity extends AppCompatActivity {
         etEmailPhone = findViewById(R.id.email_phone);
         etPassword = findViewById(R.id.password);
         etBirthday = findViewById(R.id.birthday);
+        btnSignup = findViewById(R.id.buttonSignUp);
+        radioGroup= findViewById(R.id.rgGender);
+        getInstance();
 
-        rbtnMale = findViewById(R.id.rbMale);
-        rbtnFemale = findViewById(R.id.rbFemale);
-        rbtnCustom = findViewById(R.id.rbCustom);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rbMale) {
+                    gender= "Male";
+                }
+                if (checkedId == R.id.rbFemale) {
+                    gender= "Female";
+                }
+                if (checkedId == R.id.rbCustom) {
+                    gender= "Custom";
+                }
+            }
+        });
+
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String first_name = etFirstName.getText().toString();
+                String last_name = etLastName.getText().toString();
+                String email_phone = etEmailPhone.getText().toString();
+                String password = etPassword.getText().toString();
+                String birthday = etBirthday.getText().toString();
+
+                UserApi userApi = new UserApi(first_name,last_name,email_phone,password,birthday,gender);
+                addUser(userApi);
+
+            }
+        });
+
+
+    }
+
+    private void getInstance() {
+        retrofit = new Retrofit.Builder().baseUrl("http://10.0.2.2:7000/")
+                .addConverterFactory(GsonConverterFactory.create()).build();
+        facebookInterface = retrofit.create(FacebookInterface.class);
+    }
+
+    private void addUser(UserApi user){
+        Call<Void> userAdd = facebookInterface.addUser(user);
+
+        userAdd.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Toast.makeText(SignUpActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(SignUpActivity.this, "Failed to signup", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
 
 

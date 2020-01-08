@@ -18,6 +18,10 @@ public interface FacebookInterface {
     @GET("users")
     Call<List<UserApi>> showUser();
 
+    @POST("signup")
+    Call<Void> addUser(@Body UserApi userApi);
+
+
 //    @GET("tasks")
 //    Call<List<Task>> getUsers(@Header("Authorization") String authHeader);
 
