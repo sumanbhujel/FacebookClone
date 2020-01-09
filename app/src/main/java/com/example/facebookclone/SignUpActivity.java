@@ -2,11 +2,13 @@ package com.example.facebookclone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.facebookclone.api.UsersAPI;
@@ -21,6 +23,7 @@ import retrofit2.Response;
 public class SignUpActivity extends AppCompatActivity {
 
     EditText etFirstName, etLastName, etPassword, etBirthday, etEmailPhone;
+    TextView textView;
     RadioGroup radioGroup;
     Button btnSignup;
     String gender;
@@ -37,6 +40,7 @@ public class SignUpActivity extends AppCompatActivity {
         etBirthday = findViewById(R.id.birthday);
         btnSignup = findViewById(R.id.buttonSignUp);
         radioGroup= findViewById(R.id.rgGender);
+        textView = findViewById(R.id.account);
 
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -66,6 +70,17 @@ public class SignUpActivity extends AppCompatActivity {
                 User user = new User(first_name,last_name,email_phone,password,birthday,gender);
                 addUser(user);
 
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent( SignUpActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
 

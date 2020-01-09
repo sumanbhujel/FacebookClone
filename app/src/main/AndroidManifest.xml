@@ -13,8 +13,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".bottomnavigation.BottomNavigationActivity"
-            android:label="@string/title_activity_bottom_navigation"></activity>
+            android:name=".DashboardActivity"
+            android:label="Dashboard Activity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DashboardActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
     </application>
