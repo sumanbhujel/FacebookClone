@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">FacebookClone</string>
+    <string name="app_name">Facebook</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="it_s_quick_and_easy">It\'s quick and easy.</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_or_phone_number">Email or Phone Number</string>
+    <string name="new_password">New Password</string>
+    <string name="birthday">Birthday</string>
+    <string name="gender">Gender</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="password">Password</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="log_in">Log In</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="female">Female</string>
+    <string name="male">Male</string>
+    <string name="custom">Custom</string>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

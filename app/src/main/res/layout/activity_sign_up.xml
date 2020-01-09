@@ -8,144 +8,167 @@
 
     <TextView
         android:id="@+id/tvfirst"
-        android:layout_width="188dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="76dp"
-        android:text="Create an account"
+        android:layout_width="277dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/create_an_account"
+        android:textColor="#000000"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="356dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="New Password"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_phone"
-        tools:ignore="TextFields" />
-
     <TextView
-        android:id="@+id/tvGender"
-        android:layout_width="86dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="28dp"
-        android:text="Gender"
+        android:id="@+id/tvSecond"
+        android:layout_width="201dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/it_s_quick_and_easy"
+        android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birthday" />
+        app:layout_constraintTop_toBottomOf="@+id/tvfirst" />
 
     <EditText
         android:id="@+id/first_name"
-        android:layout_width="162dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="First Name"
+        android:hint="@string/first_name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSecond" />
 
     <EditText
         android:id="@+id/last_name"
-        android:layout_width="184dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
+        android:layout_width="190dp"
+        android:layout_height="60dp"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Last Name"
+        android:hint="@string/last_name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/first_name"
         app:layout_constraintTop_toBottomOf="@+id/tvSecond" />
 
     <EditText
-        android:id="@+id/birthday"
-        android:layout_width="357dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Birthday"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
-
-    <Button
-        android:id="@+id/buttonSignUp"
-        android:layout_width="351dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="32dp"
-        android:text="Sign Up"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rgGender" />
-
-    <EditText
         android:id="@+id/email_phone"
-        android:layout_width="359dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="4dp"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Email or Phone Number"
+        android:hint="@string/email_or_phone_number"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_name"
         tools:ignore="TextFields" />
 
-    <TextView
-        android:id="@+id/tvSecond"
-        android:layout_width="188dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="4dp"
-        android:text="It's quick and easy"
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/new_password"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvfirst" />
+        app:layout_constraintTop_toBottomOf="@+id/email_phone"
+        tools:ignore="TextFields" />
+
+    <EditText
+        android:id="@+id/birthday"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/birthday"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <TextView
+        android:id="@+id/tvGender"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/gender"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/birthday" />
 
     <RadioGroup
         android:id="@+id/rgGender"
-        android:layout_width="270dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="290dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintStart_toEndOf="@+id/tvGender"
         app:layout_constraintTop_toBottomOf="@+id/birthday">
 
         <RadioButton
             android:id="@+id/rbFemale"
-            android:layout_width="89dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Female" />
+            android:layout_weight="1"
+            android:text="@string/female" />
 
         <RadioButton
             android:id="@+id/rbMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Male" />
+            android:text="@string/male" />
 
         <RadioButton
             android:id="@+id/rbCustom"
-            android:layout_width="105dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Custom" />
+            android:text="@string/custom" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/buttonSignUp"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="16dp"
+        android:background="#69a74e"
+        android:text="@string/sign_up"
+        android:textColor="#ffff"
+        android:textSize="25sp"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rgGender" />
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="255dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="16dp"
+        android:text="Already have an account?"
+        android:textColor="#030D55"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

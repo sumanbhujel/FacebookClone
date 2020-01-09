@@ -15,27 +15,11 @@ public class LoginBLL {
     boolean isloggedIn = false;
 
     public boolean userLogin(User user) {
-        Call<User> userApiCall = usersAPI.userLogin(user);
+        Call<User> userCall = usersAPI.userLogin(user);
         StrictModeClass.StrictMode();
 
         try{
-            Response<User> loginResponse = userApiCall.execute();
-            if(loginResponse.isSuccessful()){
-                isloggedIn = true;
-                Url.token += loginResponse.body().getToken();
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        return isloggedIn;
-    }
-
-    public boolean addUser(User user) {
-        Call<User> userApiCall = usersAPI.userLogin(user);
-        StrictModeClass.StrictMode();
-
-        try{
-            Response<User> loginResponse = userApiCall.execute();
+            Response<User> loginResponse = userCall.execute();
             if(loginResponse.isSuccessful()){
                 isloggedIn = true;
                 Url.token += loginResponse.body().getToken();

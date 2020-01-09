@@ -11,18 +11,17 @@ import android.widget.Toast;
 
 import com.example.facebookclone.api.UsersAPI;
 import com.example.facebookclone.model.User;
+import com.example.facebookclone.url.Url;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
+
 
 public class SignUpActivity extends AppCompatActivity {
 
     EditText etFirstName, etLastName, etPassword, etBirthday, etEmailPhone;
     RadioGroup radioGroup;
-    UsersAPI usersAPI;
-    Retrofit retrofit;
     Button btnSignup;
     String gender;
 
@@ -38,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
         etBirthday = findViewById(R.id.birthday);
         btnSignup = findViewById(R.id.buttonSignUp);
         radioGroup= findViewById(R.id.rgGender);
+
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -72,20 +72,20 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-
     private void addUser(User user){
+
+        UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<Void> userAdd = usersAPI.addUser(user);
 
         userAdd.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(SignUpActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SignUpActivity.this, "Failed to signup", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "Failed"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
