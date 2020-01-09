@@ -11,8 +11,8 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class LoginBLL {
-    UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
-    boolean isloggedIn = false;
+    private UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
+    private boolean isloggedIn = false;
 
     public boolean userLogin(User user) {
         Call<User> userCall = usersAPI.userLogin(user);

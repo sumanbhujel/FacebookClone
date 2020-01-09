@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Button btnCreate, btnLogin;
     EditText etEmail, etPassword;
+    String email_phone, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,19 +34,23 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                User user = new User(etEmail.getText().toString(), etPassword.getText().toString());
+
+                email_phone = etEmail.getText().toString();
+                password = etPassword.getText().toString();
+
+                User user = new User(email_phone,password);
 
                 LoginBLL loginBLL = new LoginBLL();
-                if(loginBLL.userLogin(user)){
-                    //dashboard
-                    Toast.makeText(LoginActivity.this, Url.token, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    startActivity(intent);
+                if(validate()){
+                    if(loginBLL.userLogin(user)){
+                        //dashboard
+                        Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                        startActivity(intent);
 
-                }else {
-                    Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                    }
                 }
-
             }
         });
 
@@ -56,6 +62,23 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean validate() {
+
+        if (TextUtils.isEmpty(email_phone)) {
+            etEmail.setError("Enter your email or phone number");
+            etEmail.requestFocus();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            etPassword.setError("Enter your password");
+            etPassword.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
     /*private void userLogin(User user) {

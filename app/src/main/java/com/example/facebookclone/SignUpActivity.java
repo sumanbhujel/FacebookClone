@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,6 +15,9 @@ import android.widget.Toast;
 import com.example.facebookclone.api.UsersAPI;
 import com.example.facebookclone.model.User;
 import com.example.facebookclone.url.Url;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
     TextView textView;
     RadioGroup radioGroup;
     Button btnSignup;
-    String gender;
+    String first_name, last_name, email_phone, password, birthday, gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.password);
         etBirthday = findViewById(R.id.birthday);
         btnSignup = findViewById(R.id.buttonSignUp);
-        radioGroup= findViewById(R.id.rgGender);
+        radioGroup = findViewById(R.id.rgGender);
         textView = findViewById(R.id.account);
 
 
@@ -47,13 +51,13 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.rbMale) {
-                    gender= "Male";
+                    gender = "Male";
                 }
                 if (checkedId == R.id.rbFemale) {
-                    gender= "Female";
+                    gender = "Female";
                 }
                 if (checkedId == R.id.rbCustom) {
-                    gender= "Custom";
+                    gender = "Custom";
                 }
             }
         });
@@ -61,33 +65,69 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String first_name = etFirstName.getText().toString();
-                String last_name = etLastName.getText().toString();
-                String email_phone = etEmailPhone.getText().toString();
-                String password = etPassword.getText().toString();
-                String birthday = etBirthday.getText().toString();
+                first_name = etFirstName.getText().toString();
+                last_name = etLastName.getText().toString();
+                email_phone = etEmailPhone.getText().toString();
+                password = etPassword.getText().toString();
+                birthday = etBirthday.getText().toString();
 
-                User user = new User(first_name,last_name,email_phone,password,birthday,gender);
-                addUser(user);
+                if (validate()) {
+                    User user = new User(first_name, last_name, email_phone, password, birthday, gender);
+                    addUser(user);
 
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                startActivity(intent);
-
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent( SignUpActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
-
-
     }
 
-    private void addUser(User user){
+    public boolean validate() {
+        if (TextUtils.isEmpty(first_name)) {
+            etFirstName.setError("Enter your First Name");
+            etFirstName.requestFocus();
+            return false;
+        }
+        if (TextUtils.isEmpty(last_name)) {
+            etLastName.setError("Enter your Last Name");
+            etLastName.requestFocus();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(email_phone)) {
+            etEmailPhone.setError("Enter your email or phone number");
+            etEmailPhone.requestFocus();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(password)) {
+            etPassword.setError("Enter your password");
+            etPassword.requestFocus();
+            return false;
+        }
+        if (TextUtils.isEmpty(birthday)) {
+            etBirthday.setError("Enter your birthday");
+            etBirthday.requestFocus();
+            return false;
+        }
+
+        if (TextUtils.isEmpty(gender)) {
+            Toast.makeText(this, " Select your Gender ", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void addUser(User user) {
 
         UsersAPI usersAPI = Url.getInstance().create(UsersAPI.class);
         Call<Void> userAdd = usersAPI.addUser(user);
@@ -100,7 +140,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SignUpActivity.this, "Failed"+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpActivity.this, "Failed" + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });

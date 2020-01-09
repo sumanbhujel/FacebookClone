@@ -25,21 +25,9 @@ public class DashboardActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_post)
                 .build();
 
-        NavController navc=Navigation.findNavController(this,R.id.nav_host_fragment);
+        NavController navc = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         NavigationUI.setupWithNavController(navView, navc);
-
-//        navView.setOnNavigationItemSelectedListener(onItemSelected);
     }
-//
-//    private BottomNavigationView.OnNavigationItemSelectedListener onItemSelected=new BottomNavigationView.OnNavigationItemSelectedListener() {
-//        @Override
-//        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//            switch (menuItem.getItemId()){
-//                case R.id.navigation_home:
-//
-//            }
-//        }
-//    }
 
 }
