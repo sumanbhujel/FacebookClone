@@ -30,7 +30,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.show_user, parent, false);
+                .inflate(R.layout.show_post, parent, false);
         PostAdapter.MyViewHolder myViewHolder = new MyViewHolder(view);
 
         return myViewHolder;
@@ -40,18 +40,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
         final Post post = postList.get(position);
-
-
         holder.textView.setText(post.getStatus());
-//        Picasso.with()
-//                .load("http://sujitg.com.np/wc/teams/"+
-//                        response.body().getFile())
-//                .into(imageView);
-
-//        holder.imageView.setImageResource("localhost:7000/images/"+addpost.getImage());
-
-        Picasso.get().load("localhost:7000/images/" + post.getImage()).into(holder.imageView);
-
+        Picasso.get().load("http://10.0.2.2:7000/images/" + post.getImage()).into(holder.imageView);
     }
 
     @Override
@@ -66,7 +56,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.image1);
+            imageView = itemView.findViewById(R.id.user_dp);
             textView = itemView.findViewById(R.id.tvStatus);
         }
     }
