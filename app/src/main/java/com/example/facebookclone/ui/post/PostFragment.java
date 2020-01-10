@@ -41,7 +41,6 @@ import retrofit2.Response;
 
 public class PostFragment extends Fragment {
 
-
     private ImageView imageView;
     private Button button;
     private EditText editText;
@@ -77,7 +76,7 @@ public class PostFragment extends Fragment {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        uploadImage(mbImage);
+
                         status = editText.getText().toString();
                         Post newPost = new Post(status, image);
                         addPost(newPost);
@@ -92,7 +91,7 @@ public class PostFragment extends Fragment {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 1) {
+        if (requestCode == 2) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getImgReady();
             } else {
@@ -117,16 +116,17 @@ public class PostFragment extends Fragment {
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission
                             .WRITE_EXTERNAL_STORAGE},
-                    1);
+                    2);
         } else {
             getImgReady();
+            uploadImage(mbImage);
         }
     }
 
 
     private void getImgReady() {
         String[] filePathColumn = {MediaStore.Images.Media.DATA};
-        Cursor cursor = getContext().getContentResolver().query(uri, filePathColumn,
+        Cursor cursor = getActivity().getContentResolver().query(uri, filePathColumn,
                 null, null, null);
         assert cursor != null;
         cursor.moveToFirst();
@@ -134,7 +134,7 @@ public class PostFragment extends Fragment {
         String imgPath = cursor.getString(columnIndex);
         File file = new File(imgPath);
         RequestBody requestBody =
-                RequestBody.create(MediaType.parse("images/*"), file);
+                RequestBody.create(MediaType.parse("image/*"), file);
         mbImage = MultipartBody.Part.createFormData("image",
                 file.getName(), requestBody);
     }
@@ -142,33 +142,33 @@ public class PostFragment extends Fragment {
     private void uploadImage(MultipartBody.Part img) {
 
         PostAPI postAPI = Url.getInstance().create(PostAPI.class);
-        Call<Post> imgUpload = postAPI.uploadImage(img);
+        Call<String> imgUpload = postAPI.uploadImage(img);
 
-        imgUpload.enqueue(new Callback<Post>() {
+        imgUpload.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Post> call, Response<Post> response) {
-                Toast.makeText(getContext(),
-                        response.body().getImage() + "Uploaded",
+            public void onResponse(Call<String> call, Response<String> response) {
+                Toast.makeText(getActivity(), response.body() + "Uploaded",
                         Toast.LENGTH_SHORT).show();
-                image = response.body().getImage();
+                image = response.body();
+                Toast.makeText(getActivity(), "image name " + image, Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onFailure(Call<Post> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.d("Error:", t.getMessage());
             }
         });
     }
 
     private void addPost(Post post) {
+
         PostAPI postAPI = Url.getInstance().create(PostAPI.class);
         Call<Void> postAdd = postAPI.addPost(post);
 
         postAdd.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(getContext(), "Post addedd", Toast.LENGTH_SHORT).show();
-                getActivity().finish();
+                Toast.makeText(getContext(), "Post added", Toast.LENGTH_SHORT).show();
             }
 
             @Override
