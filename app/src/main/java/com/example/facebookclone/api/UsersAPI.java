@@ -21,8 +21,4 @@ public interface UsersAPI {
     Call<Void> addUser(@Body User user);
 
 
-//    @GET("tasks")
-//    Call<List<Task>> getUsers(@Header("Authorization") String authHeader);
-
-
 }

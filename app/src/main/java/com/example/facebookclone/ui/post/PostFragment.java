@@ -15,11 +15,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -28,15 +27,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.facebookclone.R;
 import com.example.facebookclone.api.PostAPI;
-import com.example.facebookclone.api.UsersAPI;
 import com.example.facebookclone.model.Post;
-import com.example.facebookclone.model.User;
 import com.example.facebookclone.url.Url;
 
 import java.io.File;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -51,7 +45,7 @@ public class PostFragment extends Fragment {
     private ImageView imageView;
     private Button button;
     private EditText editText;
-    private String status,image;
+    private String status, image;
     private Uri uri;
     private MultipartBody.Part mbImage;
 
@@ -154,26 +148,27 @@ public class PostFragment extends Fragment {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 Toast.makeText(getContext(),
-                        response.body().getImage() +"Uploaded",
+                        response.body().getImage() + "Uploaded",
                         Toast.LENGTH_SHORT).show();
                 image = response.body().getImage();
             }
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
-                Log.d("Error:",t.getMessage());
+                Log.d("Error:", t.getMessage());
             }
         });
     }
 
-    private void addPost(Post post){
+    private void addPost(Post post) {
         PostAPI postAPI = Url.getInstance().create(PostAPI.class);
         Call<Void> postAdd = postAPI.addPost(post);
-        
+
         postAdd.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(getContext(), "Post addedd", Toast.LENGTH_SHORT).show();
+                getActivity().finish();
             }
 
             @Override
@@ -183,7 +178,7 @@ public class PostFragment extends Fragment {
 
             }
         });
-        
+
     }
 
 

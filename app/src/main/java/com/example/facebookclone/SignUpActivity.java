@@ -16,9 +16,6 @@ import com.example.facebookclone.api.UsersAPI;
 import com.example.facebookclone.model.User;
 import com.example.facebookclone.url.Url;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
