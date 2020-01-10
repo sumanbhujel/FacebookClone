@@ -24,13 +24,22 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.facebookclone.R;
+import com.example.facebookclone.adapter.PostAdapter;
+import com.example.facebookclone.adapter.UserAdapter;
 import com.example.facebookclone.api.PostAPI;
+import com.example.facebookclone.api.UsersAPI;
 import com.example.facebookclone.model.Post;
+import com.example.facebookclone.model.User;
 import com.example.facebookclone.url.Url;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -47,6 +56,8 @@ public class PostFragment extends Fragment {
     private String status, image;
     private Uri uri;
     private MultipartBody.Part mbImage;
+    private RecyclerView recyclerView;
+    private List<Post> postList;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -57,11 +68,17 @@ public class PostFragment extends Fragment {
         imageView = root.findViewById(R.id.img);
         editText = root.findViewById(R.id.etStatus);
         button = root.findViewById(R.id.btnPost);
+        recyclerView = root.findViewById(R.id.rvPost);
 
 
         postViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
+
+                PostAdapter postAdapter = new PostAdapter(postList);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(postAdapter);
 
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -87,6 +104,13 @@ public class PostFragment extends Fragment {
             }
         });
         return root;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        postList = new ArrayList<>();
+        showPost();
     }
 
     @Override
@@ -158,6 +182,19 @@ public class PostFragment extends Fragment {
                 Log.d("Error:", t.getMessage());
             }
         });
+    }
+
+    private void showPost() {
+        PostAPI postApi = Url.getInstance().create(PostAPI.class);
+        Call<List<Post>> postListCall = postApi.showPost();
+
+        try {
+            Response<List<Post>> response = postListCall.execute();
+            postList = response.body();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void addPost(Post post) {
