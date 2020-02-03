@@ -171,7 +171,7 @@ public class PostFragment extends Fragment {
                 Toast.makeText(getActivity(), response.body() + "Uploaded",
                         Toast.LENGTH_SHORT).show();
                 image = response.body();
-                Toast.makeText(getActivity(), "image name " + image, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "image name " + image, Toast.LENGTH_SHORT).show();
             }
 
             @Override
